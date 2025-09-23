@@ -15,20 +15,29 @@
   */
 
 :root{
-    --cor_fundo_header: rgb(55, 34, 85);
-    --cor_de_fundo: rgb(77, 0, 107);
+    --roxo_header: rgb(55, 34, 85);
+    --roxo_de_fundo: rgb(77, 0, 107);
+    --roxo_menu_jogos: rgb(60, 15, 78, 0.3);
+    --roxo_itens_carrocel: rgb(42, 14, 80);
     --fonte_titulo: "Agbalumo", system-ui;
     --fonte_texto: "Josefin Sans", sans-serif;
 }
 
 header{
-    background-color: var(--cor_fundo_header);
-    width: 100%;
+    grid-area: header;
+    background-color: var(--roxo_header);
     padding: 25px;
 }
 
 body{
-    background-color: var(--cor_de_fundo);
+    display: grid;
+    grid-template-areas: 
+    "header header"
+    "menu main";
+    grid-template-rows: auto 1fr;
+    grid-template-columns: 15% 1fr;
+    height: 100vh;
+    background-color: var(--roxo_de_fundo);
     margin: 0;
 }
 
@@ -38,4 +47,50 @@ body{
     font-style: italic;
     font-size: 60px;
     margin: 0;
+}
+
+.menu_lateral_jogos{
+  grid-area: menu;
+  background-color: var(--roxo_menu_jogos);
+  margin: 0;
+}
+
+main{
+  grid-area: main;
+  display: flex;
+  justify-content: center;
+
+}
+.caixa{
+  background-color: var(--roxo_menu_jogos);
+  width: 90%;
+  height: 40%;
+  margin: 2rem;
+  display: flex;
+  flex-direction: row;
+  overflow-x: auto;
+  scrollbar-width: none;
+  border-radius: 3rem;
+}
+
+.caixa:hover{
+  cursor: grab;
+
+  /* quero ao clicar no item o cursor se feche */
+}
+
+.caixa::-webkit-scrollbar {
+  display: none; /* Chrome, Edge, Safari */
+}
+
+.itens_carrocel{
+  background-color: var(--roxo_itens_carrocel);
+  flex: 0 0 30%;
+  border-radius: 2rem;
+  margin: 2rem;
+}
+
+.itens_carrocel:hover{
+  margin: 0.5rem;
+  border-radius: 3rem;
 }
