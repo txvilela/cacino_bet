@@ -75,8 +75,10 @@ main{
 
 .caixa:hover{
   cursor: grab;
+}
 
-  /* quero ao clicar no item o cursor se feche */
+.caixa:active{
+  cursor: grabbing;
 }
 
 .caixa::-webkit-scrollbar {
@@ -90,7 +92,9 @@ main{
   margin: 2rem;
 }
 
-.itens_carrocel:hover{
+
+
+/* .itens_carrocel:hover{
   margin: 0.5rem;
   border-radius: 3rem;
-}
+} */
