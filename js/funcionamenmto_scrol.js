@@ -5,6 +5,7 @@ caixas.forEach((caixa) => {
   let startX = 0;        
   let scrollInicial = 0; 
   let pointerId = null;  
+  let alvo = null
 
 
   const apertou = (e) => {
@@ -22,11 +23,17 @@ caixas.forEach((caixa) => {
     try{ caixa.setPointerCapture(pointerId); } catch (err){}
 
     document.body.style.userSelect = "none";
+
+    if(e.target.classList.contains("itens_carrocel")){
+      alvo = e.target;
+      alvo.classList.add("arrastando");
+    }
   };
 
   const estaClicado = (e) => {
     if(!clicado || e.pointerId !== pointerId) return;
     e.preventDefault();
+    
 
     const delta = startX - e.clientX;
     const maxScroll = caixa.scrollWidth - caixa.clientWidth;
@@ -49,6 +56,12 @@ caixas.forEach((caixa) => {
     try { caixa.releasePointerCapture && caixa.releasePointerCapture(e ? e.pointerId : null); } catch (err) {}
 
     document.body.style.userSelect = "";
+
+    if(alvo){
+      alvo.classList.remove("arrastando");
+      alvo = null;
+    }
+
   };
 
   caixa.addEventListener('pointerdown', apertou); 
