@@ -67,23 +67,26 @@
 
         <section class="bJ">
 
-            <h2 class="titulo">Dealer</h2>
+            <div class="informativos">
+                <h2 class="titulo">Dealer</h2>
+            </div>
 
-            <div class="campo_cartas">
+            <div class="campo_cartas" data-alvo="dealer">
                 <div class="campo_botoes">
-
                 </div>
 
                 <div class="cartas">
-                    <div class="carta"></div>
-                    <div class="carta"></div>
+
                 </div>
             </div>
 
-            <h2 class="titulo">Suas Cartas</h2>
+            <div class="informativos">
+                <h2 class="titulo">Suas Cartas</h2>
+                <p class="estilo_banca">Banca: $<span id="banca">1000</span></p>
+            </div>
+            
 
-
-            <div class="campo_cartas">
+            <div class="campo_cartas"  data-alvo="player">
                 <div class="campo_botoes">
                     
                         <button class="botao parar">Parar</button>
@@ -97,8 +100,7 @@
                 </div>
 
                 <div class="cartas">
-                    <div class="carta"></div>
-                    <div class="carta"></div>
+                    
                 </div>
 
             </div>
@@ -107,7 +109,8 @@
     </main>
         <!-- <script defer src="./js/ajuda_itens.js" type="module"></script> -->
         <script defer src="./js/funcionamenmto_scrol.js" type="module"></script>
-        <script defer src="./js/carta_aleatoria.js" type="module"></script>
+        <!-- <script defer src="./js/carta_aleatoria.js" type="module"></script> -->
+        <script defer src="./js/dar_carta.js" type="module"></script>
 </body>
 </html>
 
