@@ -9,6 +9,7 @@ fetch('./json/baralho.json')
     darCarta('player'); 
     darCarta('dealer');
 
+
 });
 
 function darCarta(alvo) {

@@ -135,15 +135,14 @@ main{
   justify-content: space-between;
   align-items: center;
   width: 90%;
-  border: 10px solid;
-  margin: 10px;
 }
 
 .titulo{
   font-family: var(--fonte_titulo);
   font-size: 40px;
-  margin: 0;
-  white-space: nowrap; 
+  margin-left: 30px;
+  white-space: nowrap;
+  
 }
 
 .estilo_banca{
@@ -159,6 +158,7 @@ main{
 .campo_cartas{
   background-color: var(--roxo_menu_jogos);
   width: 90%;
+  max-height: 450px;
   border-radius: 3rem;
   display: flex;
   flex-direction: row;
@@ -169,12 +169,13 @@ main{
 
 .carta{
   flex: 1 1 100px;
-  max-width: 350px; 
+  max-width: 150px; 
+  max-height: 250px;
   aspect-ratio: 5.2 / 7.5;
-border-radius: clamp(1px, 2vw, 6px);
+  border-radius: clamp(1px, 2vw, 6px);
   overflow: hidden;
   background-color: var(--branco_cartas);
-  background-size: cover;
+  background-size: 100% 100%;
   background-position: center;
   margin: 10px;
 }
@@ -190,12 +191,14 @@ border-radius: clamp(1px, 2vw, 6px);
 .campo_botoes{
   background-color: var(--campo_botoes);
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  margin: 0 0 0 10rem;  
-  width: auto;
+  margin: 0 auto; 
+  width: fit-content;
   border-radius: 1rem;
   gap: 10%;
+  transform: translatex( -150px); 
+
 }
 
 .botao{
