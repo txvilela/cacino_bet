@@ -29,12 +29,28 @@
     --branco_texto_botao: rgb(255, 255, 255);
     --fonte_titulo: "Agbalumo", system-ui;
     --fonte_texto: "Josefin Sans", sans-serif;
+    --contraste_fundo: rgb(23, 150, 189);
 }
 
 header{
     grid-area: header;
     background-color: var(--roxo_header);
     padding: 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+}
+
+.estilo_banca{
+  font-family: var(--fonte_texto);
+  text-align: right;
+  font-size: 2rem;
+  margin-right: 15%;
+  border: 6px solid;
+  display: inline-block;
+  padding: 8px 8px;
+  color: var(--contraste_fundo);
 }
 
 body{
@@ -118,6 +134,36 @@ main{
   border-radius: 3rem;
 }
 
+/* inicia black Jack */
+
+.inicio_jogo_container{
+  display: flex;
+  justify-content: center; /* centraliza horizontal */
+  align-items: center;     /* centraliza vertical */
+  width: 100vw;
+  height: 100vh;
+  position: absolute; /* garante que fique sobre o resto da página */
+  top: 0;
+  left: 0;
+  z-index: 1000; /* acima de tudo */
+}
+
+.inicio_jogo{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: var(--fonte_titulo);
+  font-size: 20px;
+  background-color: var(--contraste_fundo);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.5rem;
+  width: 10rem;
+
+}
+
 /* JOGO DE BLACK JACK */
 
 .bJ{
@@ -140,19 +186,30 @@ main{
 .titulo{
   font-family: var(--fonte_titulo);
   font-size: 40px;
-  margin-left: 30px;
+  margin: 0 30px;
   white-space: nowrap;
-  
+
 }
 
-.estilo_banca{
+.irmaos{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.soma, .pontuacao{
   font-family: var(--fonte_texto);
-  text-align: right;
-  font-size: 2rem;
-  margin-right: 15%;
-  border: 6px solid;
-  display: inline-block;
-  padding: 8px 8px;
+  font-size: 4rem;
+  margin: 0;
+}
+
+.parte{
+  width: 90%;
+  max-height: 450px;
+  border-radius: 3rem;
+  display: flex;
+  flex-direction: row;
+  gap: 5%;
+  justify-content: center;
 }
 
 .campo_cartas{
@@ -184,7 +241,6 @@ main{
   flex: 1; 
   display: flex;
   justify-content: center;
-  gap:5%;
   align-items: flex-start;
 }
 
@@ -214,12 +270,13 @@ main{
   align-items: center;
   width: 8rem;
   height: 5rem;
-
 }
 
 .parar{
   background-color: var(--parar);
 }
+
+
 
 .mais_uma_carta{
   background-color: var(--mais_carta);
@@ -235,4 +292,11 @@ main{
   display: none;
 }
 
+.parar:hover,
+ .mais_uma_carta:hover,
+  .dividir_cartas:hover,
+   .dobrar_o_valor:hover{
+  width: 8.5rem;
+  height: 5.5rem;
+}
 

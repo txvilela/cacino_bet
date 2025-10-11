@@ -14,6 +14,8 @@
 <body>
     <header>
         <h1 class="titulo_Cacino">Cacino Bet</h1>
+        <p class="estilo_banca">Banca: $<span id="banca">1000</span></p>
+
     </header>
     <aside class="menu_lateral_jogos">
         <!-- Quero menu lateral com click e mais simples falta arrumar as letras -->
@@ -65,25 +67,33 @@
             </div>
         </section>
 
+        <section class="inicio_jogo_container">
+            <button class="inicio_jogo">INICIAR</button>
+        </section>
+
         <section class="bJ">
 
             <div class="informativos">
+                <div class="irmaos">
                 <h2 class="titulo">Dealer</h2>
-                                <p class="estilo_banca">Banca: $<span id="banca">1000</span></p>
-
+                <p class="pontuacao">Pontos: <span class="soma">21</span></p>
+                </div>
             </div>
 
             <div class="campo_cartas" data-alvo="dealer">
-                <div class="campo_botoes">
-                </div>
-
+ 
                 <div class="cartas">
-
                 </div>
+
             </div>
 
+            
             <div class="informativos">
-                <h2 class="titulo">Suas Cartas</h2>
+                <div class="irmaos">
+                    <h2 class="titulo">Dealer</h2>
+                    <p class="pontuacao">Pontos: <span class="soma">21</span></p>
+                </div>
+
                 <div class="campo_botoes">
                     
                         <button class="botao parar">Parar</button>
