@@ -12,6 +12,13 @@
   font-weight: 400;
   font-style: normal;
 }
+
+.bebas-neue-regular {
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
   */
 
 :root{
@@ -29,6 +36,7 @@
     --branco_texto_botao: rgb(255, 255, 255);
     --fonte_titulo: "Agbalumo", system-ui;
     --fonte_texto: "Josefin Sans", sans-serif;
+    --fonte_super_titulo: "Bebas Neue", sans-serif;
     --contraste_fundo: rgb(23, 150, 189);
 }
 
@@ -138,6 +146,7 @@ main{
 
 .inicio_jogo_container{
   display: flex;
+  flex-direction: column;
   justify-content: center; /* centraliza horizontal */
   align-items: center;     /* centraliza vertical */
   width: 100vw;
@@ -148,6 +157,11 @@ main{
   z-index: 1000; /* acima de tudo */
 }
 
+.super_titulo{
+  font-family: var(--fonte_super_titulo);
+  font-size: 10vw;
+
+}
 .inicio_jogo{
   display: flex;
   justify-content: center;
@@ -174,6 +188,7 @@ main{
   width: 100%;
   height: auto;
   gap: 5%;
+  display: none;
 }
 
 .informativos{

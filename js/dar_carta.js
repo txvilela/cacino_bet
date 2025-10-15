@@ -1,19 +1,6 @@
-let baralho = [];
+import { baralho } from './baralho.js';
 
-fetch('./json/baralho.json')
-  .then(res => res.json())
-  .then(data => {
-    baralho = data;
-    darCarta('player'); 
-    darCarta('dealer');
-    darCarta('player'); 
-    darCarta('dealer');
-
-
-
-});
-
-function darCarta(alvo) {
+export function darCarta(alvo) {
   if (baralho.length === 0) return;
 
   const carta = baralho[Math.floor(Math.random() * baralho.length)];
