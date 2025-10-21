@@ -15,5 +15,6 @@ botaoInicio.addEventListener("click", async () => {
   await carregarBaralho();
   
   distribuirCartas();
+
   playerDecide();
 });

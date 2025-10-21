@@ -6,30 +6,65 @@ const pontosDealer = document.getElementById("pontosD");
 const pontosPlayer = document.getElementById("pontosP");
 
 let cartaOcultaDealer = null;
+let carta1 = null;
+let carta2 = null;
+let cartaVisivelDealer = null;
+let pontosPlayerTotal = 0;
+let pontosDealerTotal = 0;
 
 pontosDealer.textContent = 0;
 pontosPlayer.textContent = 0;
 
 
-export function distribuirCartas() {
-    const carta1 = darCarta('player');
-    const carta2 = darCarta('player');
 
-    let pontosPlayerTotal = carta1.pontos + carta2.pontos;
+function esperar(ms) {
+    return new Promise(resolve => setTimeout (resolve, ms));
+}
+
+function pontuacao(){
+
+    pontosPlayerTotal = 0;
+    pontosDealerTotal = 0;
+
+    if(carta1) pontosPlayerTotal += carta1.pontos;
+    if(carta2) pontosPlayerTotal += carta2.pontos;
+    if(cartaVisivelDealer) pontosDealerTotal += cartaVisivelDealer.pontos;
+
     pontosPlayer.textContent = pontosPlayerTotal;
-
-    cartaOcultaDealer = darCarta('dealer', true);
-
-    const cartaVisivelDealer = darCarta('dealer');
-
-    let pontosDealerTotal = cartaVisivelDealer.pontos;
     pontosDealer.textContent = pontosDealerTotal;
 
+}
 
-    if(pontosPlayerTotal > 21 ){
+export async function distribuirCartas() {
+    
+    cartaOcultaDealer = darCarta('dealer', true);
+    await esperar(500);
+    pontuacao();
+
+    carta1 = darCarta('player');
+    await esperar(500);
+    pontuacao();
+    
+    cartaVisivelDealer = darCarta('dealer');
+    await esperar(500);
+    pontuacao();
+
+    carta2 = darCarta('player');
+    await esperar(500);
+    pontuacao();
+
+    podeRevelar();
+
+}
+
+function podeRevelar(){
+        if(pontosPlayerTotal > 17 ){
+        if(cartaOcultaDealer) {
+            pontosDealerTotal = (cartaVisivelDealer ? cartaVisivelDealer.pontos : 0) + cartaOcultaDealer.pontos;
+            pontosDealer.textContent = pontosDealerTotal;
+        }
         revelarCartaDealer();
     }
-
 }
 
 const campoBotoes = document.querySelector(".campo_botoes");
