@@ -57,8 +57,8 @@ export async function distribuirCartas() {
 
 }
 
-function podeRevelar(){
-        if(pontosPlayerTotal >= 21 ){
+function podeRevelar(force = false){
+        if(force || pontosPlayerTotal >= 21 ){
         if(cartaOcultaDealer) {
             pontosDealerTotal = (cartaVisivelDealer ? cartaVisivelDealer.pontos : 0) + cartaOcultaDealer.pontos;
             pontosDealer.textContent = pontosDealerTotal;
@@ -68,6 +68,7 @@ function podeRevelar(){
 }
 
 const campoBotoes = document.querySelector(".campo_botoes");
+const b_MeioJogo = document.querySelectorAll(".meio_jogo");
 const b_Parar = document.querySelector(".parar");
 const b_MaisUma = document.querySelector(".mais_uma_carta");
 const b_Dividir = document.querySelector(".dividir_cartas");
@@ -96,7 +97,8 @@ export function playerDecide(){
         b_Dividir.disabled = true;
         b_Dobrar.disabled = true;
         b_MaisUma.disabled = true;
-        podeRevelar();
+        podeRevelar(true);
+        resultadoFinal();
     };
 
     b_MaisUma.onclick = async () => {
@@ -111,15 +113,22 @@ export function playerDecide(){
             b_Dividir.disabled = true;
             b_Dobrar.disabled = true;
             podeRevelar();
+            resultadoFinal();
         }
     };
      
 }
 
-export function resultadoFinal(){
-    
-}
+function resultadoFinal(){
+    if(pontosPlayerTotal > 21){
+        b_MeioJogo.forEach(botao => botao.style.display = "none");
+    }
+    else if(pontosDealerTotal < 21 && pontosDealerTotal > pontosPlayerTotal){
+        b_MeioJogo.forEach(botao => botao.style.display = "none");
+        campoBotoes.style.backgroundColor = "var(--campo_botoes)";
 
+    }
+}
 
 
 

@@ -17,4 +17,5 @@ botaoInicio.addEventListener("click", async () => {
   distribuirCartas();
 
   playerDecide();
+
 });
