@@ -4,6 +4,8 @@ import { revelarCartaDealer } from './revela_carta_Dealer.js';
 
 const pontosDealer = document.getElementById("pontosD");
 const pontosPlayer = document.getElementById("pontosP");
+const caixaMensagem = document.getElementById("resultado");
+const mensagem_caixaMensagem =document.getElementById("mensagem_resultado");
 
 let cartaOcultaDealer = null;
 let carta1 = null;
@@ -11,6 +13,7 @@ let carta2 = null;
 let cartaVisivelDealer = null;
 let pontosPlayerTotal = 0;
 let pontosDealerTotal = 0;
+let revelou = false;
 
 pontosDealer.textContent = 0;
 pontosPlayer.textContent = 0;
@@ -64,6 +67,7 @@ function podeRevelar(force = false){
             pontosDealer.textContent = pontosDealerTotal;
         }
         revelarCartaDealer();
+        revelou = true;
     }
 }
 
@@ -98,6 +102,12 @@ export function playerDecide(){
         b_Dobrar.disabled = true;
         b_MaisUma.disabled = true;
         podeRevelar(true);
+        while(revelou == true && pontosPlayerTotal <= 21 && pontosDealerTotal < 17){
+            const novaCarta = darCarta('dealer');
+            esperar(500);
+            pontosDealerTotal += novaCarta.pontos;
+            pontosDealer.textContent = pontosDealerTotal;
+        }
         resultadoFinal();
     };
 
@@ -119,15 +129,29 @@ export function playerDecide(){
      
 }
 
-function resultadoFinal(){
-    if(pontosPlayerTotal > 21){
-        b_MeioJogo.forEach(botao => botao.style.display = "none");
-    }
-    else if(pontosDealerTotal < 21 && pontosDealerTotal > pontosPlayerTotal){
-        b_MeioJogo.forEach(botao => botao.style.display = "none");
-        campoBotoes.style.backgroundColor = "var(--campo_botoes)";
+function resultadoFinal() {
+    let mensagem = "";
 
+    if (pontosPlayerTotal > 21) {
+        mensagem = "Você perdeu!!!";
+    } 
+    else if (pontosDealerTotal > 21) {
+        mensagem = "Você ganhou!!!";
+    } 
+    else if (pontosPlayerTotal > pontosDealerTotal) {
+        mensagem = "Você ganhou!!!";
+    } 
+    else if (pontosPlayerTotal < pontosDealerTotal) {
+        mensagem = "Você perdeu!!!";
+    } 
+    else {
+        mensagem = "Empate!";
     }
+
+    // esconde os botões e mostra o resultado
+    b_MeioJogo.forEach(botao => botao.style.display = "none");
+    caixaMensagem.classList.remove("oculto");
+    mensagem_caixaMensagem.textContent = mensagem;
 }
 
 

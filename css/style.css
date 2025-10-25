@@ -38,6 +38,10 @@
     --fonte_texto: "Josefin Sans", sans-serif;
     --fonte_super_titulo: "Bebas Neue", sans-serif;
     --contraste_fundo: rgb(23, 150, 189);
+    --cor_resultado: rgb(38, 13, 48);
+    --cor_resultado_botao: rgb(28, 27, 29);
+    --cor_botao_houver: rgb(82, 78, 78);
+
 }
 
 header{
@@ -315,3 +319,37 @@ main{
   height: 5.5rem;
 }
 
+.resultado{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--cor_resultado);
+  color: var(--branco_texto_botao);
+  padding: 30px;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 1.5rem;
+  font-family: var(--fonte_texto);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+.oculto{
+  display: none;
+}
+
+.resultado button {
+  margin-top: 15px;
+  padding: 8px 16px;
+  background-color: var(--cor_resultado_botao);
+  border: none;
+  border-radius: 5px;
+  color: var(--botao);
+  cursor: pointer;
+}
+
+.resultado button:hover {
+  background-color: var(--cor_botao_houver);
+  transform: scale(1.1); 
+}
