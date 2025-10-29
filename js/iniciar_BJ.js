@@ -3,6 +3,7 @@ import { darCarta } from './dar_carta.js';
 import { revelarCartaDealer } from './revela_carta_Dealer.js';
 import { distribuirCartas } from './regras_BJ.js';
 import { playerDecide } from './regras_BJ.js';
+import { comandoFimDeJogo } from './regras_BJ.js';
 
 const inicio = document.querySelector(".inicio_jogo_container");
 const mesa = document.querySelector(".bJ");
@@ -17,5 +18,7 @@ botaoInicio.addEventListener("click", async () => {
   distribuirCartas();
 
   playerDecide();
+  
+  comandoFimDeJogo();
 
 });

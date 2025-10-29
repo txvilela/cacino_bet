@@ -6,6 +6,10 @@ const pontosDealer = document.getElementById("pontosD");
 const pontosPlayer = document.getElementById("pontosP");
 const caixaMensagem = document.getElementById("resultado");
 const mensagem_caixaMensagem =document.getElementById("mensagem_resultado");
+const reiniciarJogo = document.getElementById("apostar_Mais");
+const fechar = document.getElementById("fechar_resultado");
+const mesaDealer = document.querySelector(".cartas_dealer");
+const mesaPlayer = document.querySelector(".cartas_player");
 
 let cartaOcultaDealer = null;
 let carta1 = null;
@@ -60,14 +64,17 @@ export async function distribuirCartas() {
 
 }
 
-function podeRevelar(force = false){
+async function podeRevelar(force = false){
         if(force || pontosPlayerTotal >= 21 ){
+        await esperar(500);
+        revelarCartaDealer();
+        revelou = true;
+
         if(cartaOcultaDealer) {
             pontosDealerTotal = (cartaVisivelDealer ? cartaVisivelDealer.pontos : 0) + cartaOcultaDealer.pontos;
             pontosDealer.textContent = pontosDealerTotal;
         }
-        revelarCartaDealer();
-        revelou = true;
+        
     }
 }
 
@@ -96,15 +103,15 @@ export function playerDecide(){
 
     setTimeout(() => clearInterval(intervalo), 5000);
 
-    b_Parar.onclick = () => {
+    b_Parar.onclick = async () => {
         b_Parar.disabled = true;
         b_Dividir.disabled = true;
         b_Dobrar.disabled = true;
         b_MaisUma.disabled = true;
-        podeRevelar(true);
-        while(revelou == true && pontosPlayerTotal <= 21 && pontosDealerTotal < 17){
+        await podeRevelar(true);
+        while(pontosPlayerTotal <= 21 && pontosDealerTotal < 17){
+            await esperar(500);
             const novaCarta = darCarta('dealer');
-            esperar(500);
             pontosDealerTotal += novaCarta.pontos;
             pontosDealer.textContent = pontosDealerTotal;
         }
@@ -123,17 +130,23 @@ export function playerDecide(){
             b_Dividir.disabled = true;
             b_Dobrar.disabled = true;
             podeRevelar();
+            await esperar(500);
             resultadoFinal();
         }
     };
      
 }
 
-function resultadoFinal() {
+async function resultadoFinal() {
     let mensagem = "";
+
+    await esperar(1000);
 
     if (pontosPlayerTotal > 21) {
         mensagem = "Você perdeu!!!";
+    }
+    else if (pontosPlayerTotal == 21) {
+        mensagem = "Você ganhou!!!";
     } 
     else if (pontosDealerTotal > 21) {
         mensagem = "Você ganhou!!!";
@@ -154,6 +167,41 @@ function resultadoFinal() {
     mensagem_caixaMensagem.textContent = mensagem;
 }
 
+export function comandoFimDeJogo(){
+
+    reiniciarJogo.onclick = () => {
+            // zera pontos e variáveis
+        pontosDealer.textContent = 0;
+        pontosPlayer.textContent = 0;
+        pontosDealerTotal = 0;
+        pontosPlayerTotal = 0;
+        cartaOcultaDealer = null;
+        carta1 = null;
+        carta2 = null;
+        cartaVisivelDealer = null;
+        revelou = false;
+
+        // limpa cartas na tela
+
+        if (mesaDealer) mesaDealer.innerHTML = "";
+        if (mesaPlayer) mesaPlayer.innerHTML = "";
+
+        // esconde resultado e volta os botões
+        caixaMensagem.classList.add("oculto");
+        b_MeioJogo.forEach(botao => {
+            botao.style.display = "inline-block";
+            botao.disabled = true;
+        });
+
+        // recarrega o baralho se quiser começar de novo
+        carregarBaralho();
+
+        // pode começar nova rodada
+        distribuirCartas();
+        playerDecide();
+    };
+
+}
 
 
 
